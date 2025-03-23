@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body {
+            background-color: #0b0748;
+        }
+
+        .app {
+            border: 2px solid black;
+            width: 600px;
+            height: 500px;
+            margin-left: 500px;
+            margin-top: 110px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .app hr {
+            border: none;
+            height: 2px;
+            background-color: #070436;
+            margin: 0 40px 0 40px;
+
+        }
+
+        .app h1 {
+            color: #070436;
+        }
+
+        .btn {
+            border: 1px solid rgb(162, 153, 153);
+            width: 500px;
+            height: 40px;
+            margin-bottom: 10px;
+            text-align: center;
+            border-radius: 5px;
+            background-color: white;
+            color: #222;
+            cursor: pointer;
+        }
+
+        .btn:hover:not([disabled]) {
+            background-color: #222;
+            color: white;
+        }
+
+        .btn:disabled {
+            cursor: no-drop;
+        }
+
+        #next-btn {
+            background-color: #0b0748;
+            color: white;
+            border: none;
+            width: 150px;
+            height: 40px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            margin-left: 230px;
+
+        }
+
+        .correct {
+            background-color: #9aeabc;
+        }
+
+        .incorrect {
+            background-color: #ff9393;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <h1>Simple Quiz</h1>
+        <hr>
+        <div class="quiz">
+            <h3 id="question">Which is the largest animal in the world?</h3>
+            <div id="answer-buttons">
+                <button class="btn">A</button>
+                <button class="btn">A</button>
+                <button class="btn">A</button>
+                <button class="btn">A</button>
+
+            </div><br>
+            <button id="next-btn">Next</button>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <script>
+        const questions = [
+            {
+                question: "which is the largest animal in the world?",
+                answers: [
+                    { text: "Shark", correct: false },
+                    { text: "Blue Whale", correct: true },
+                    { text: "Elephant", correct: false },
+                    { text: "Giraffe", correct: false },
+                ]
+            },
+            {
+                question: "which is the smallest country in the world?",
+                answers: [
+                    { text: "Asia", correct: false },
+                    { text: "Australia", correct: true },
+                    { text: "Arctic", correct: false },
+                    { text: "Africa", correct: false },
+                ]
+            },
+            {
+                question: "which is the largest animal in the world?",
+                answers: [
+                    { text: "Shark", correct: false },
+                    { text: "Blue Whale", correct: true },
+                    { text: "Elephant", correct: false },
+                    { text: "Giraffe", correct: false },
+                ]
+            },
+            {
+                question: "which is the largest animal in the world?",
+                answers: [
+                    { text: "Shark", correct: false },
+                    { text: "Blue Whale", correct: true },
+                    { text: "Elephant", correct: false },
+                    { text: "Giraffe", correct: false },
+                ]
+            }
+        ];
+        let questionElement = document.getElementById("question");
+        let answerButtons = document.getElementById("answer-buttons");
+        let nextButton = document.getElementById("next-btn");
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            nextButton.innerHTML = "Next";
+            showQuestion();
+        }
+        function showQuestion() {
+            resetState();
+            let currentQuestion = questions[currentQuestionIndex];
+            let questionNo = currentQuestionIndex + 1;
+            questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+
+            // answerButton.innerHTML = '';
+            currentQuestion.answers.forEach(answer => {
+                const button = document.createElement("button");
+                button.innerHTML = answer.text;
+                button.classList.add("btn");
+                answerButtons.appendChild(button);
+                if (answer.correct) {
+                    button.dataset.correct = answer.correct;
+                }
+                button.addEventListener("click", selectAnswer);
+            });
+        }
+        function resetState() {
+            nextButton.style.display = "none";
+            while (answerButtons.firstChild) {
+                answerButtons.removeChild(answerButtons.firstChild);
+            }
+        }
+        function selectAnswer(e) {
+            const selectedBtn = e.target;
+            const isCorrect = selectedBtn.dataset.correct === "true";
+            if (isCorrect) {
+                selectedBtn.classList.add("correct");
+                score++;
+            } else {
+                selectedBtn.classList.add("incorrect");
+            }
+            Array.from(answerButtons.children).forEach(button => {
+                if (button.dataset.correct === "true") {
+                    button.classList.add("correct");
+                }
+                button.disabled = true;
+            });
+            nextButton.style.display = "block";
+        }
+        function showScore() {
+            resetState();
+            questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+            nextButton.innerHTML = "Play Again";
+            nextButton.style.display = "block";
+        }
+        function handleNextButton() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                showQuestion();
+            }
+            else {
+                showScore();
+            }
+        }
+        nextButton.addEventListener("click", () => {
+            if (currentQuestionIndex < questions.length) {
+                handleNextButton();
+            }
+            else {
+                startQuiz();
+            }
+        })
+        startQuiz();
+
+    </script>
+</body>
+
+</html>
