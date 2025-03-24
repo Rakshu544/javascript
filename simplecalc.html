@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            background-color: #FFFECE;
+        }
+
+        .container {
+            width: 400px;
+            height: 450px;
+            border: 1px solid black;
+            margin-left: 600px;
+            margin-top: 120px;
+            background-color: #3E3F5B;
+            border-radius: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: white;
+        }
+
+        .calculator {
+            margin-left: 20px;
+        }
+
+
+        #display-btn {
+            width: 350px;
+            height: 40px;
+
+        }
+
+        .button input {
+            margin-top: 20px;
+            margin-left: 18px;
+            height: 55px;
+            width: 65px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Simple Calculator</h2>
+        <div class="calculator">
+            <form>
+                <div>
+                    <input type="text" name="display" id="display-btn">
+                </div>
+                <div class="button">
+                    <input type="button" value="C" onclick="display.value=''">
+                    <input type="button" value="1" onclick="display.value+='1'">
+                    <input type="button" value="2" onclick="display.value+='2'">
+                    <input type="button" value="+" onclick="display.value+='+'">
+
+                </div>
+                <div class="button">
+                    <input type="button" value="3" onclick="display.value+='3'">
+                    <input type="button" value="4" onclick="display.value+='4'">
+                    <input type="button" value="5" onclick="display.value+='5'">
+                    <input type="button" value="-" onclick="display.value+='-'">
+
+
+                </div>
+                <div class="button">
+                    <input type="button" value="6" onclick="display.value+='6'">
+                    <input type="button" value="7" onclick="display.value+='7'">
+                    <input type="button" value="8" onclick="display.value+='8'">
+                    <input type="button" value="*" onclick="display.value+='*'">
+
+
+                </div>
+                <div class="button">
+                    <input type="button" value="9" onclick="display.value+='9'">
+                    <input type="button" value="0" onclick="display.value+='0'">
+                    <input type="button" value="=" onclick="display.value=eval(display.value)">
+                    <input type="button" value="/" onclick="display.value+='/'">
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+    <script>
+        let Calculator = document.querySelector(".calculator");
+        let displayButton = document.querySelector("#display-btn");
+        let Button = document.querySelector(".button");
+
+
+    </script>
+</body>
+
+</html>
