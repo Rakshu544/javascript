@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            background-color: #EABDE6;
+        }
+
+        img {
+            mix-blend-mode: multiply;
+            width: 25px;
+            height: 25px;
+            margin-top: 40px;
+            margin-left: 50px;
+        }
+
+        .logo {
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        .logo h2 {
+            margin-top: 39px;
+        }
+
+        .textarea {
+            position: relative;
+            width: 30%;
+            max-width: 500px;
+            min-height: 50px;
+            background: #fff;
+            color: #333;
+            padding: 20px;
+            margin-left: 50px;
+            outline: none;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            padding-top: 2px;
+            padding-left: 4px;
+
+        }
+
+        .textarea img {
+            width: 25px;
+            bottom: 0px;
+            right: 0px;
+            position: absolute;
+            cursor: pointer;
+        }
+
+        button {
+
+            width: 120px;
+            height: 30px;
+            border-radius: 45px;
+            font-size: 0.7rem;
+            display: flex;
+            gap: 0.3rem;
+            padding-top: 7px;
+            padding-left: 15px;
+            margin-left: 50px;
+            background-color: rgb(101, 19, 177);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <img src="data:image/png;base64,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"
+            alt="">
+        <h2>Notes</h2>
+    </div>
+    <div id="create-btn">
+        <button><i class="fa-solid fa-pencil"></i>Create Notes</button>
+    </div>
+    <div class="text-place">
+        <!-- <p contenteditable="true" class="textarea"><img src="delete.png" alt=""></p> -->
+
+    </div>
+
+
+    <script>
+        let createButton = document.querySelector("#create-btn");
+        let textPlace = document.querySelector(".text-place");
+        let textArea = document.querySelectorAll(".textarea");
+        function savedata() {
+            localStorage.setItem("data", textPlace.innerHTML);
+        }
+
+        createButton.addEventListener("click", () => {
+            let inputbox = document.createElement("p");
+            let image = document.createElement("img");
+            inputbox.className = "textarea";
+            inputbox.setAttribute("contenteditable", "true");
+            image.src = "delete.png";
+            textPlace.appendChild(inputbox).appendChild(image);
+            savedata();
+
+        });
+        textPlace.addEventListener("click", function (e) {
+            if (e.target.tagName === "IMG") {
+                e.target.parentElement.remove();
+                savedata();
+            }
+            else if (e.target.tagName === "P") {
+                e.target.addEventListener("input", savedata);
+
+            }
+
+        });
+        function showdata() {
+            textPlace.innerHTML = localStorage.getItem("data");
+        }
+        showdata();
+    </script>
+</body>
+
+</html>
