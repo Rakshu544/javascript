@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        body {
+            background-color: #2E294E;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-top: 50px;
+            font-size: 3rem;
+        }
+
+        #par1 {
+            font-size: 2rem;
+            color: cyan;
+            margin-left: 590px;
+        }
+
+        #par2 {
+            font-size: 2rem;
+            color: cyan;
+            margin-left: 530px;
+        }
+
+        #DOB {
+            display: flex;
+            gap: 2rem;
+        }
+
+        input {
+            width: 200px;
+            height: 40px;
+            margin-top: 30px;
+            font-size: 1.2rem;
+        }
+
+        #Age {
+            display: flex;
+            gap: 2rem;
+        }
+
+        button {
+            width: 150px;
+            height: 50px;
+            font-size: 1rem;
+            margin-left: 713px;
+            margin-top: 30px;
+            background-color: rgb(21, 177, 21);
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #result {
+            text-align: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Age Calculator</h1>
+    </div>
+    <div id="box">
+        <div id="DOB">
+            <p id="par1">Date of Birth</p>
+            <input type="date" id="date1">
+        </div>
+        <div id="Age">
+            <p id="par2">Age at the date of</p>
+            <input type="date" id="date2">
+        </div>
+    </div>
+    <button onclick="Calculate()">Calculte Age</button>
+    <p id="result"></p>
+</body>
+
+<script>
+    let result = document.getElementById("result");
+    let birthDate = document.getElementById("date1");
+    let currentDate = document.getElementById("date2");
+    function Calculate() {
+        let bday = new Date(birthDate.value);
+
+        let d1 = bday.getDate();
+        let m1 = bday.getMonth() + 1;
+        let y1 = bday.getFullYear();
+
+        let cday = new Date(currentDate.value);
+        let d2 = cday.getDate();
+        let m2 = cday.getMonth() + 1;
+        let y2 = cday.getFullYear();
+
+        let year = y2 - y1;
+        let month, date;
+        if (m2 >= m1) {
+            month = m2 - m1;
+
+        } else {
+            year--;
+            month = 12 + m2 - m1;
+        }
+
+        if (d1 >= d2) {
+            month--;
+            date = 30 + d2 - d1;
+        } else {
+            date = d2 - d1;
+        }
+        console.log(year + "Years Old");
+
+        result.innerHTML = `${year} Years ${month}months ${date} days`;
+    }
+
+
+</script>
+
+</html>
